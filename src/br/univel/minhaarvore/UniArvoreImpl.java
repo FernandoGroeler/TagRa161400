@@ -5,8 +5,10 @@ public class UniArvoreImpl<T> implements UniArvore<T> {
 		
 	}
 	
+	private T raiz;
+	
 	public UniArvoreImpl(T noRaiz) {
-		
+		this.raiz = noRaiz;
 	}
 
 	@Override
