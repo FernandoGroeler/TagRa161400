@@ -32,9 +32,41 @@ public class Principal {
 		UniNode<Conta> noDespesasOperacionais = new UniNodeImpl<>(despesasOperacionais);
 		noDespesasOperacionais.addFilho(noDespesasAdministrativas);
 		
-		UniArvore<Conta> planoContas = new UniArvoreImpl(noDespesasOperacionais);		
+		UniArvore<Conta> planoContas = new UniArvoreImpl(noDespesasOperacionais);	
+		
+		/**
+		 * Adicione aqui o restante das contas.
+		 */
+		
+		somarFilhos(planoContas);
+		
+		/**
+		 * Mostra todo o plano de contas, inclusive com tabulações (\t) a cada nível.
+		 */
+		planoContas.mostrarTodosConsole();
+		
+		/**
+		 * O exercício consiste em identificar a necessidade 
+		 * de novos métodos para finalizar a tarefa, sempre lembrando
+		 * de coesão, acoplamento e encapsulamento.
+		 * Entregar link do repositóario para fernandod@univel.br com assunto:
+		 * TrabalhoComplementar 3o Sem
+		 */
 	}
 	
+	/**
+	 * 
+	 * Percorre toda a árvore, recursivamente, encontra
+	 * todas as contas análiticas (isLeaf() == true), soma
+	 * seus valores e atribui o total na conta pai.
+	 * 
+	 * Depois pega todos os pais e somam no avô.
+	 */
+	private void somarFilhos(UniArvore<Conta> planoContas) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public static void main(String[] args) {
 		new Principal();
 	}
