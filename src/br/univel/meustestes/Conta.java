@@ -37,4 +37,11 @@ public class Conta {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
+	@Override
+	public String toString() {
+		return this.id + " " + this.nome + " R$ " + this.valor;
+	}
+	
+	
 }

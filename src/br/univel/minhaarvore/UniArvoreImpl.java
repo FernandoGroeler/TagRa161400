@@ -1,19 +1,42 @@
 package br.univel.minhaarvore;
 
 public class UniArvoreImpl<T> implements UniArvore<T> {
-	class UniNode {
-		
-	}
+	private UniNode<T> raiz;
 	
-	private T raiz;
-	
-	public UniArvoreImpl(T noRaiz) {
+	public UniArvoreImpl(UniNode<T> noRaiz) {
 		this.raiz = noRaiz;
 	}
 
 	@Override
 	public void mostrarTodosConsole() {
-		// TODO Auto-generated method stub
+		imprimir(this.raiz);
+		//System.out.println(getTab(this.raiz) + this.raiz.getConteudo().toString());		
+	}
+
+	@Override
+	public UniNode<T> getNoRaiz() {
+		return this.raiz;
+	}
+	
+	private String getTab(UniNode<T> node) {
+		UniNode<T> n = node;
+		String s = "";
+		while (n.getPai() != null) {
+			s += "\t";
+			n = n.getPai();
+		}
 		
+		return s;
+	}
+	
+	private void imprimir(UniNode<T> node) {
+		if (node != null) {
+			System.out.println(getTab(node) + node.getConteudo().toString());
+		
+			if (node.getFilhos() != null) {
+				for (UniNode<T> n : node.getFilhos())
+					imprimir(n);
+			}
+		}
 	}
 }

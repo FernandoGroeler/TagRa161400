@@ -24,12 +24,17 @@ public class UniNodeImpl<T> implements UniNode<T>  {
 
 	@Override
 	public UniNode<T> getPai() {
-		return pai;
+		return this.pai;
 	}
-
+	
+	@Override
+	public void setPai(UniNode<T> pai) {
+		this.pai = pai;		
+	}	
+	
 	@Override
 	public List<UniNode<T>> getFilhos() {
-		return filhos;
+		return this.filhos;
 	}
 
 	@Override
@@ -38,5 +43,6 @@ public class UniNodeImpl<T> implements UniNode<T>  {
 			this.filhos = new ArrayList<>();
 		
 		this.filhos.add(node);
+		node.setPai(this);		
 	}
 }
