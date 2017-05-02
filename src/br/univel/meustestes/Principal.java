@@ -63,7 +63,7 @@ public class Principal {
         UniNode<Conta> noMateriais = new UniNodeImpl<>(materiais);
         noMateriais.addFilho(noMateriaisDeEscritorio);
         noMateriais.addFilho(noMateriaisDeLimpeza);
-		
+
 		Conta despesasOperacionais = new Conta(1, "Despesas operacionais", new BigDecimal("0.00"));
 		UniNode<Conta> noDespesasOperacionais = new UniNodeImpl<>(despesasOperacionais);
 		noDespesasOperacionais.addFilho(noDespesasAdministrativas);
@@ -71,71 +71,31 @@ public class Principal {
 		noDespesasOperacionais.addFilho(noManutencaoELimpeza);
 		noDespesasOperacionais.addFilho(noMateriais);
 		
-//		UniArvore<Conta> planoContas = new UniArvoreImpl<Conta>(noDespesasOperacionais);
-		UniArvore<Conta> planoContas = new UniArvoreImpl(noDespesasOperacionais);
-		/**
-		 * Adicione aqui o restante das contas.
-		 */
-		
-		//somarFilhos(planoContas);
-		
-		/**
-		 * Mostra todo o plano de contas, inclusive com tabulações (\t) a cada nível.
-		 */
+		UniArvore<Conta> planoContas = new UniArvoreImpl<Conta>(noDespesasOperacionais);
+		somar(planoContas.getNoRaiz());
 		planoContas.mostrarTodosConsole();
-
-		/**
-		 * O exercício consiste em identificar a necessidade 
-		 * de novos métodos para finalizar a tarefa, sempre lembrando
-		 * de coesão, acoplamento e encapsulamento.
-		 * Entregar link do repositóario para fernandod@univel.br com assunto:
-		 * TrabalhoComplementar 3o Sem
-		 */
 	}
 	
-	/**
-	 * 
-	 * Percorre toda a árvore, recursivamente, encontra
-	 * todas as contas análiticas (isLeaf() == true), soma
-	 * seus valores e atribui o total na conta pai.
-	 * 
-	 * Depois pega todos os pais e somam no avô.
-	 */
-	private void somarFilhos(UniArvore<Conta> planoContas) {
-		/*
-		UniNode<Conta> nodeRaiz = planoContas.getNoRaiz();
+	private void somar(UniNode<Conta> node) {
+		BigDecimal total = new BigDecimal(0);
 
-		if (nodeRaiz != null) {
-			if (!nodeRaiz.isLeaf()) {
-				BigDecimal valor = new BigDecimal(0);
-				
-				for (UniNode<Conta> node : nodeRaiz.getFilhos()) {
-					valor.add(node.getConteudo().getValor());
-					node.getPai().getConteudo().setValor(valor);
-				}
-			}
-		}
-		*/			
-		
-		/* todo:
-		if (nodeRaiz.getFilhos() != null) {
-			BigDecimal valor = new BigDecimal(0);
-			UniArvore<Conta> proximo = null;
-			
-			if (!nodeRaiz.isLeaf()) {
-				for (UniNode<Conta> node : nodeRaiz.getFilhos()) {
-					valor.add(node.getConteudo().getValor());
-					nodeRaiz.getConteudo().setValor(valor);
-					
-					if (proximo == null)
-						proximo = new UniArvoreImpl<Conta>(node);
+		if (node != null) {
+			if (node.getFilhos() != null) {
+				for (UniNode<Conta> n : node.getFilhos()) {
+					total = total.add(n.getConteudo().getValor());
+					n.getPai().getConteudo().setValor(total);
+					somar(n);
 				}
 				
-				if (proximo != null)
-					somarFilhos(proximo);
+				for (UniNode<Conta> n : node.getFilhos()) {
+					if (!n.isLeaf()) {
+						total = total.add(n.getConteudo().getValor());
+						n.getPai().getConteudo().setValor(total);
+						somar(n);
+					}
+				}				
 			}
 		}
-		*/
 	}
 
 	public static void main(String[] args) {

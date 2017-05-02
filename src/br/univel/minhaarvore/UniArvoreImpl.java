@@ -10,7 +10,6 @@ public class UniArvoreImpl<T> implements UniArvore<T> {
 	@Override
 	public void mostrarTodosConsole() {
 		imprimir(this.raiz);
-		//System.out.println(getTab(this.raiz) + this.raiz.getConteudo().toString());		
 	}
 
 	@Override

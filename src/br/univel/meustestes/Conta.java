@@ -42,6 +42,4 @@ public class Conta {
 	public String toString() {
 		return this.id + " " + this.nome + " R$ " + this.valor;
 	}
-	
-	
 }
